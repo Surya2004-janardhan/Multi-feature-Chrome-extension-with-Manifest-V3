@@ -1,9 +1,10 @@
 {
-  "name": "a-multi-feature-chrome-extension-using-manifest-v3",
+  "name": "productivity++",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000M\u0000u\u0000l\u0000t\u0000i\u0000-\u0000f\u0000e\u0000a\u0000t\u0000u\u0000r\u0000e\u0000-\u0000C\u0000h\u0000r\u0000o\u0000m\u0000e\u0000-\u0000e\u0000x\u0000t\u0000e\u0000n\u0000s\u0000i\u0000o\u0000n\u0000-\u0000w\u0000i\u0000t\u0000h\u0000-\u0000M\u0000a\u0000n\u0000i\u0000f\u0000e\u0000s\u0000t\u0000-\u0000V\u00003\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "description": "A multi-feature productivity Chrome extension using Manifest V3.",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,7 +14,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Surya2004-janardhan/Multi-feature-Chrome-extension-with-Manifest-V3/issues"
   },
