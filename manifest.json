@@ -25,8 +25,8 @@
     "commands": {
         "_execute_action": {
             "suggested_key": {
-                "default": "Alt+Shift+P",
-                "mac": "Alt+Shift+P"
+                "default": "Alt+Shift+Q",
+                "mac": "Alt+Shift+Q"
             },
             "description": "Open Popup"
         },
