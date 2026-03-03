@@ -1,10 +1,19 @@
 import React from "react";
+import BlockList from "./components/BlockList";
+import ExportData from "./components/ExportData";
+import "./options.css";
 
 const App: React.FC = () => {
     return (
-        <div style={{ maxWidth: 700, margin: "0 auto", padding: 24 }}>
-            <h1>Productivity Suite — Options</h1>
-            <p>Options page is working!</p>
+        <div className="container options-container">
+            <header className="header">
+                <h1>Productivity Suite — Settings</h1>
+            </header>
+
+            <main className="options-content">
+                <BlockList />
+                <ExportData />
+            </main>
         </div>
     );
 };
