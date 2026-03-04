@@ -10,6 +10,15 @@ const NotesWidget: React.FC = () => {
             setNotes(savedNotes);
         };
         loadNotes();
+
+        const listener = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: string) => {
+            if (areaName === "local" && changes.notes) {
+                setNotes(changes.notes.newValue || "");
+            }
+        };
+
+        chrome.storage.onChanged.addListener(listener);
+        return () => chrome.storage.onChanged.removeListener(listener);
     }, []);
 
     return (

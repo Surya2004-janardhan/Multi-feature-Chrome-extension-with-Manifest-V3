@@ -7,6 +7,15 @@ const SessionsWidget: React.FC = () => {
 
     useEffect(() => {
         loadSessions();
+
+        const listener = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: string) => {
+            if (areaName === "local" && changes.sessions) {
+                setSessions(changes.sessions.newValue || {});
+            }
+        };
+
+        chrome.storage.onChanged.addListener(listener);
+        return () => chrome.storage.onChanged.removeListener(listener);
     }, []);
 
     const loadSessions = async () => {
