@@ -13,7 +13,8 @@ const NotesWidget: React.FC = () => {
 
         const listener = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: string) => {
             if (areaName === "local" && changes.notes) {
-                setNotes(changes.notes.newValue || "");
+                const newValue = changes.notes.newValue;
+                setNotes(typeof newValue === "string" ? newValue : "");
             }
         };
 

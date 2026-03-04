@@ -10,7 +10,8 @@ const SessionsWidget: React.FC = () => {
 
         const listener = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: string) => {
             if (areaName === "local" && changes.sessions) {
-                setSessions(changes.sessions.newValue || {});
+                const newValue = changes.sessions.newValue as Record<string, TabSession>;
+                setSessions(newValue || {});
             }
         };
 
