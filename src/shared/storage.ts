@@ -64,3 +64,11 @@ export async function getAllData(): Promise<StorageData> {
         blockedSites: (syncData[BLOCKED_SITES_KEY] as string[]) || ([] as string[]),
     };
 }
+
+export async function importAllData(data: StorageData): Promise<void> {
+    const { sessions, notes, blockedSites } = data;
+    await Promise.all([
+        chrome.storage.local.set({ [SESSIONS_KEY]: sessions || {}, [NOTES_KEY]: notes || "" }),
+        chrome.storage.sync.set({ [BLOCKED_SITES_KEY]: blockedSites || [] }),
+    ]);
+}
