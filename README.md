@@ -80,16 +80,18 @@ graph TD
 
 ---
 
-## ❓ Frequently Asked Questions
+---
 
-**Q: Is the restore behavior (opening in a new window) intentional?**
-A: **Yes.** As per the requirements of task, saved sessions are restored into a completely new browser window to keep your work environments separate.
+## 🛠️ Chrome APIs Used
 
-**Q: Are notes global?**
-A: **Yes.** Notes are designed as a single, persistent scratchpad that stays the same regardless of what session you are in. This allows you to have a continuous thread of thoughts across different task contexts.
+This project leverages several core Chrome APIs to deliver its features:
 
-**Q: Why doesn't the extension "replace" or change my current webpage when I save a note?**
-A: To maintain user privacy and security, the extension operates in its own sandboxed UI (the popup and new tab). It only interacts with current webpages via the **Context Menu** (to grab info) or the **Blocker** (to prevent access).
+- **`chrome.storage`**: Used for persistent data storage. `local` is used for sessions and notes, while `sync` ensures the website blocklist follows the user across devices.
+- **`chrome.tabs`**: Allows the extension to query active tabs for session saving and monitor URL changes for the website blocker.
+- **`chrome.commands`**: Handles the registration and execution of global keyboard shortcuts (`Alt+Shift+Q` and `Ctrl+Shift+S`).
+- **`chrome.windows`**: Enables the creation of new browser windows when restoring a saved tab session.
+- **`chrome.contextMenus`**: Powers the "Add page to notes" right-click feature, allowing seamless data capture.
+- **`chrome.runtime`**: Manages internal messaging between the popup, options page, and background service worker.
 
 ---
 
@@ -144,12 +146,35 @@ A: To maintain user privacy and security, the extension operates in its own sand
 
 ## 📁 Project Structure
 
-- `src/shared/`: Shared types and storage helpers.
-- `src/popup/`: UI and logic for the extension popup.
-- `src/options/`: Configuration page for blockers and data export.
-- `src/newtab/`: Custom dashboard for the new tab experience.
-- `src/background/`: Service worker for background events.
-- `src/content/`: Scripts injected into web pages.
+A comprehensive breakdown of the project's organization:
+
+- **`manifest.json`**: The core configuration file defining permissions, background scripts, and UI entry points.
+- **`webpack.config.js`**: Orchestrates the build process, bundling TypeScript/React and copying assets to `/dist`.
+- **`public/`**: Contains HTML templates for the popup, options, new tab, and blocked pages.
+- **`src/`**: The main source code directory.
+  - **`background/`**: Event-driven Service Worker logic (Context Menu, Command handling).
+  - **`content/`**: Content scripts for specialized page interactions (Blocker messaging).
+  - **`newtab/`**: React components and styles for the New Tab dashboard.
+  - **`options/`**: UI for settings, website blocking, and data portability.
+  - **`popup/`**: The main extension interface for sessions and notes.
+  - **`shared/`**: Unified API for storage, shared types, and constants.
+  - **`styles/`**: Global CSS tokens, variables, and common styles.
+- **`dist/`**: (Generated) The production-ready extension package to be loaded into Chrome.
+
+---
+
+## ❓ Frequently Asked Questions
+
+**Q: Is the restore behavior (opening in a new window) intentional?**
+A: **Yes.** As per the requirements of task, saved sessions are restored into a completely new browser window to keep your work environments separate.
+
+**Q: Are notes global?**
+A: **Yes.** Notes are designed as a single, persistent scratchpad that stays the same regardless of what session you are in. This allows you to have a continuous thread of thoughts across different task contexts.
+
+**Q: Why doesn't the extension "replace" or change my current webpage when I save a note?**
+A: To maintain user privacy and security, the extension operates in its own sandboxed UI (the popup and new tab). It only interacts with current webpages via the **Context Menu** (to grab info) or the **Blocker** (to prevent access).
+
+---
 
 ## 🔒 Privacy & Data
 
