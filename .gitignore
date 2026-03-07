@@ -3,3 +3,4 @@ task-requirements.txt
 node_modules/
 
 dist/
+explanation.md
