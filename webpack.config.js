@@ -44,22 +44,22 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/popup.html",
+      template: "./popup.html",
       filename: "popup.html",
       chunks: ["popup"],
     }),
     new HtmlWebpackPlugin({
-      template: "./public/options.html",
+      template: "./options.html",
       filename: "options.html",
       chunks: ["options"],
     }),
     new HtmlWebpackPlugin({
-      template: "./public/newtab.html",
+      template: "./newtab.html",
       filename: "newtab.html",
       chunks: ["newtab"],
     }),
     new HtmlWebpackPlugin({
-      template: "./public/blocked.html",
+      template: "./blocked.html",
       filename: "blocked.html",
       chunks: ["blocked"],
     }),
